@@ -3,6 +3,9 @@
 An advanced Python-based interactive simulation of the Poisson Distribution, built with Streamlit.
 This project visualizes the mathematical foundation of probability and showcases how events occur independently over a fixed continuous interval.
 
+![pd1](https://github.com/user-attachments/assets/29906a57-49f9-4347-95e3-61a667a9ba7c)
+
+
 ## 🌟 Features
 - **Interactive Controls:** Sliders and inputs for the average rate ($\lambda$) and sample size.
 - **Compare Mode:** Allows comparing two different Poisson distributions ($\lambda$ vs $\lambda_2$) side-by-side.
