@@ -160,7 +160,48 @@ tab_sim, tab_info = st.tabs(["🎮 Interactive Simulator", "📚 Poisson Distrib
 # ----------------------------------------
 # 1. SIMULATOR TAB
 # ----------------------------------------
+with tab_sim:
+    # Sidebar Problem Definition
+    st.sidebar.header("⚙️ Problem Definition")
+    st.sidebar.markdown('Define a real-world scenario (Binomial framework).')
+    
+    if 'n_val' not in st.session_state:
+        st.session_state.n_val = 200
+    if 'p_val' not in st.session_state:
+        st.session_state.p_val = 0.05
 
+    def parse_question():
+        text = st.session_state.question_input
+        if not text:
+            return
+            
+        p_val = None
+        match_dec = re.search(r'\b0?\.\d+\b', text)
+        match_pct = re.search(r'\b(\d+(?:\.\d+)?)\s*%', text)
+        match_frac = re.search(r'\b(\d+)\s*/\s*(\d+)\b', text)
+        
+        if match_dec:
+            p_val = float(match_dec.group())
+        elif match_pct:
+            p_val = float(match_pct.group(1)) / 100.0
+        elif match_frac:
+            num, den = float(match_frac.group(1)), float(match_frac.group(2))
+            if den != 0:
+                p_val = num / den
+                
+        n_val = None
+        matches_int = re.findall(r'\b[1-9]\d+\b', text)
+        for m in matches_int:
+            val = int(m)
+            # Ensure it is not the percentage or fraction part if possible
+            if val > 1:
+                n_val = val
+                break
+                
+        if p_val is not None:
+            st.session_state.p_val = max(0.0001, min(0.9999, float(p_val)))
+        if n_val is not None:
+            st.session_state.n_val = max(1, min(1000000, int(n_val)))
     
     question = st.sidebar.text_area(
         "Real-World Question / Context (Optional)", 
