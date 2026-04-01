@@ -38,6 +38,13 @@ Where:
 3. **Visualization:** Complex and attractive dual-mode visualizations are built using `matplotlib` and `mpl_toolkits.mplot3d`, seamlessly deployed within Streamlit to achieve immediate reactivity.
 4. **Error Handling & State Validation:** The Streamlit widgets cleanly parse and constrain negative/invalid $\lambda$ parameters dynamically.
 
+## 🧪 Use Cases
+
+- Modeling number of customer arrivals in a queue  
+- Predicting system failures in reliability engineering  
+- Analyzing traffic flow in networks  
+- Estimating rare events in large datasets  
+
 ## 🚀 How to Run the Project
 
 ### Prerequisites
